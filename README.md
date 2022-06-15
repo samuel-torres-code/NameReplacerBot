@@ -1,6 +1,6 @@
 # NameReplacerBot
 
-Discord Bot that will replace random words in song lyrics to your friends names.
+Discord Bot that will replace random words in song lyrics to your friends names using Genius API.
 
 Built in TypeScript.
 
