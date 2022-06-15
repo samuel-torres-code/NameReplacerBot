@@ -2,7 +2,7 @@
 
 Discord Bot that will replace random words in song lyrics to your friends names.
 
-Built in TypeScript.
+Built in TypeScript. Deployed with Docker.
 
 # Dependencies
 

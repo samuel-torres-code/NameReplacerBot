@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.ts",
+    "build": "tsc -b",
     "dev": "nodemon index.ts"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
     "dotenv": "^16.0.1",
     "genius-lyrics-api": "^3.2.0",
     "nodemon": "^2.0.16",
+    "pm2": "^5.2.0",
     "ts-node": "^10.8.1",
     "wokcommands": "^1.5.3"
   }
