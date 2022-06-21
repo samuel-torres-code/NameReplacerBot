@@ -13,7 +13,7 @@ async function translateText(str: string): Promise<string> {
   var wordArr = lineArr.map((v) => {
     return v.split(" ");
   });
-
+  let maxSyllables = 1;
   const nameMap = new Map();
   const newStr = await nameSchema
     .find()
@@ -22,6 +22,9 @@ async function translateText(str: string): Promise<string> {
         const syllables = v.syllables;
         if (!nameMap.has(syllables)) {
           nameMap.set(syllables, []);
+          if (syllables > maxSyllables) {
+            maxSyllables = syllables;
+          }
         }
 
         nameMap.get(syllables).push(v.name);
@@ -29,12 +32,13 @@ async function translateText(str: string): Promise<string> {
     })
     .then(() => {
       let newStr = "";
+
       wordArr.forEach((line: string[]) => {
         if (!line.at(0)?.startsWith("[")) {
           const index = Math.floor(Math.random() * line.length);
           let syllables = getSyllables(line[index]);
-          if (syllables > 3 || syllables < 1) {
-            syllables = Math.floor(Math.random() * 3) + 1;
+          if (syllables > maxSyllables || syllables < 1) {
+            syllables = Math.floor(Math.random() * maxSyllables) + 1;
           }
 
           const namesThatMatch = nameMap.get(syllables);
@@ -65,7 +69,6 @@ export default {
   category: "Testing",
   description: "Gets Lyrics to Song",
   slash: true,
-  
 
   options: [
     {
@@ -106,6 +109,6 @@ export default {
       return song;
     });
 
-    return `I hope you're happy`;
+    return `Here you go...`;
   },
 } as ICommand;
